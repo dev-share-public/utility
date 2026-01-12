@@ -1,0 +1,15 @@
+# version: "3.8"
+
+services:
+  api-utility:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    working_dir: /app
+    volumes:
+      - ../:/app
+    ports:
+      - "9000:80"
+    environment:
+      - AIR_ENV=dev
+    command: ["air", "-c", "docker/air.toml", "-build.poll=true"]
