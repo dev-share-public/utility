@@ -2,6 +2,7 @@ package route
 
 import (
 	logcustom "utility/config/log"
+	"utility/controller/card/handle"
 	"utility/helper"
 
 	"github.com/gofiber/fiber/v2"
@@ -20,11 +21,12 @@ func SetUpRoute() *fiber.App {
 	// })
 	api := app1.Group("/api")
 	apiCard := api.Group("/card")
-	apiCard.Post("/get-brand-card", func(cx *fiber.Ctx) error {
-		return cx.Status(200).JSON(fiber.Map{
-			"status": true,
-		})
-	})
+	// apiCard.Post("/get-brand-card", func(cx *fiber.Ctx) error {
+	// 	return cx.Status(200).JSON(fiber.Map{
+	// 		"status": true,
+	// 	})
+	// })
+	apiCard.Post("/get-brand-card", handle.H_GetBrandCard)
 	app1.Use(recover.New())
 	app1.Use(NotFoundRoute)
 	return app1
