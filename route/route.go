@@ -27,6 +27,7 @@ func SetUpRoute() *fiber.App {
 	// 	})
 	// })
 	apiCard.Post("/get-brand-card", handle.H_GetBrandCard)
+	apiCard.Post("/get-card-detail", handle.H_GetCardDetail)
 	app1.Use(recover.New())
 	app1.Use(NotFoundRoute)
 	return app1

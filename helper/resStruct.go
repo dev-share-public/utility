@@ -1,6 +1,7 @@
 package helper
 
 import (
+	"encoding/json"
 	"utility/config/envi"
 
 	"github.com/gofiber/fiber/v2"
@@ -112,4 +113,10 @@ func GetErrorByKeyV1(ctx *fiber.Ctx, key string, err_cust ...map[string]interfac
 		Message:    "Unknown error",
 		Data:       map_err,
 	}.StructMasterErrorResponseFinal()
+}
+
+func DecodeResponse[T any](body []byte) (T, error) {
+	var result T
+	err := json.Unmarshal(body, &result)
+	return result, err
 }
